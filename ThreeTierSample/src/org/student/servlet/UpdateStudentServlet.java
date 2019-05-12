@@ -46,7 +46,7 @@ public class UpdateStudentServlet extends HttpServlet {
 //			response.getWriter().println("修改成功！");
 			response.sendRedirect("QueryAllStudentsServlet");//修改完毕后 ，再次重新查询全部的学生 并显示
 		}else {
-			response.getWriter().println("修改失败！");
+			response.getWriter().println("修改失败了！");
 		}
 		
 		
