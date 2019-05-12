@@ -1,5 +1,5 @@
 <%@page import="org.student.entity.Student"%>
-
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -49,8 +49,6 @@
 			%>
 					<tr>
 						<td><a href="QueryStudentBySnoServlet?sno=<%=student.getSno() %>"><%=student.getSno() %></a>      </td>
-						
-						
 						<td><%=student.getSname() %></td>
 						<td><%=student.getSage() %></td>
 						<td> <a href="DeleteStudentServlet?sno=<%=student.getSno() %>   ">删除</a> </td>

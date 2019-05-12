@@ -12,7 +12,7 @@ public class StudentServiceImpl implements IStudentService{
 	IStudentDao studentDao = new StudentDaoImpl();
 	//根据学号查询学生
 	public Student queryStudentBySno(int sno) {
-		return studentDao.queryStudentBySno(sno);
+		return studentDao. queryStudentBySno(sno);
 	}
 	//查询全部学生
 	public List<Student> queryAllStudents(){

@@ -86,12 +86,17 @@ public class StudentDaoImpl implements IStudentDao{
 	//根据学号 查询学生
 	public Student queryStudentBySno(int sno) {//3
 		Student student = null;
+	
 		Connection connection = null ;
 		 PreparedStatement pstmt = null ;
 		  ResultSet rs = null ; 
 		try {
-			Class.forName("oracle.jdbc.OracleDriver") ;
-			 connection = DriverManager.getConnection( URL,USERNAME,PASSWORD ) ;
+			 Class.forName("com.mysql.jdbc.Driver") ;
+				
+			 connection= DriverManager.getConnection("jdbc:mysql:"
+						+ "//localhost:3306/mydatabase", "root", "123");
+			 
+			 
 			 String sql = "select * from student where sno =? " ;
 			  pstmt = connection.prepareStatement( sql) ;
 			  pstmt.setInt(1, sno);
@@ -103,6 +108,8 @@ public class StudentDaoImpl implements IStudentDao{
 				  String address = rs.getString("saddress") ;
 				  student = new Student(no,name,age,address);
 			  }
+			 
+			
 			  return student ;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

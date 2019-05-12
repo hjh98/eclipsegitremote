@@ -1,6 +1,7 @@
 package org.student.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,12 +28,14 @@ public class QueryStudentBySnoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int no  = Integer.parseInt( request.getParameter("sno"))  ;
+		
 		StudentServiceImpl service  = new StudentServiceImpl();
 		Student student = service.queryStudentBySno(no) ;
-		System.out.println(student);
+	      System.out.println(student); 
 		//将此人的数据 通过前台jsp显示:studentInfo.jsp
 		
 		request.setAttribute("student", student);//请查询到的学生 放入request域中
+		
 		
 		//如果request域没有数据,使用重定向跳转response.sendRedirect();
 		//如果request域有数据 (request.setAttribute()  ),使用请求转发跳转

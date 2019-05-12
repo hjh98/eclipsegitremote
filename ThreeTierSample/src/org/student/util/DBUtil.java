@@ -13,9 +13,7 @@ import org.student.entity.Student;
 
 //通用的数据操作方法
 public class DBUtil {
-	private static final String URL  ="jdbc:oracle:thin:@127.0.0.1:1521:ORCL" ;
-	private static final String USERNAME  ="scott" ;
-	private static final String PASSWORD  ="tiger" ;
+	
 	public static PreparedStatement pstmt = null ;
 	public static Connection connection = null ;
 	public static ResultSet rs = null ; 
@@ -25,7 +23,7 @@ public class DBUtil {
 		int count = -1 ;
 		try {
 			pstmt = createPreParedStatement(sql, null) ;
-			rs = pstmt.executeQuery() ;//88
+			rs = pstmt.executeQuery() ;
 			if(rs.next()) {
 				count= rs.getInt( 1 ) ;
 			}
@@ -98,8 +96,11 @@ public class DBUtil {
 	
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
-		 Class.forName("oracle.jdbc.OracleDriver") ;
-		 return  DriverManager.getConnection( URL,USERNAME,PASSWORD ) ;
+		 Class.forName("com.mysql.jdbc.Driver") ;
+		
+		 return  DriverManager.getConnection("jdbc:mysql:"
+					+ "//localhost:3306/mydatabase", "root", "123");
+		 
 	}
 	
 	public static PreparedStatement createPreParedStatement(String sql,Object[] params) throws ClassNotFoundException, SQLException {

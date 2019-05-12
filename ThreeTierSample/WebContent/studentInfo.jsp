@@ -11,6 +11,7 @@
 		<%
 		
 			Student student = (Student)request.getAttribute("student") ;
+		
 		%>
 		<!--  通过表单展示此人信息 -->
 		<form action="UpdateStudentServlet">
@@ -22,6 +23,6 @@
 				<a href="QueryAllStudentsServlet">返回</a>
 				
 		</form>
-		
+	
 </body>
 </html>
