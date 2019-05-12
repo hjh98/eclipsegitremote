@@ -133,7 +133,7 @@ public class StudentDaoImpl implements IStudentDao{
 	}
 
 	
-	//查询当前页（特定页）的学生集合
+	//查询当前页（特定页）的学生集合1
 	//currentPage:页数、当前页的页码
 	//pageSize：页面大小
 	@Override
