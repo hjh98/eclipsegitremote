@@ -1,3 +1,4 @@
+<%@page import="org.student.entity.Page"%>
 <%@page import="org.student.entity.Student"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -20,6 +21,18 @@
 </head>
 <body>
 	<%
+		/*
+			在分页显示的前提下：显示数据jsp需要哪些数据：
+					当前页  currentPage
+					页面大小 pageSize
+					当前页的数据集合  students
+					总数据 totalCount
+					总页数   totalPage
+							-->新建Page类，用于封装以上5个字段
+		*/
+	
+	
+	
 		//error:adderror 失败
 		//否则：1 确实执行了增加    2直接访问查询全部页面
 		String error = (String)request.getAttribute("error") ;//addError
@@ -44,11 +57,16 @@
 			
 			<%
 				//获取request域中的数据
-				List<Student> students = (List<Student> )request.getAttribute("students") ;
-				for(Student student:students){
+				Page p  = (Page)request.getAttribute("p") ;
+			 
+			
+			
+				for(Student student:p.getStudents()){
 			%>
 					<tr>
 						<td><a href="QueryStudentBySnoServlet?sno=<%=student.getSno() %>"><%=student.getSno() %></a>      </td>
+						
+						
 						<td><%=student.getSname() %></td>
 						<td><%=student.getSage() %></td>
 						<td> <a href="DeleteStudentServlet?sno=<%=student.getSno() %>   ">删除</a> </td>
@@ -59,8 +77,56 @@
 			
 			
 			%>
+			
 		
 		</table>
-		<a href="add.jsp">新增</a>
+		<a href="QueryAllStudentsServlet">查看全部</a>
+		<%
+				if(p.massage!="allmassage"){
+			
+			%>
+		<a href="add.jsp">新增</a><br/>
+		
+		<%
+				if(p.getCurrentPage() ==p.getTotalPage()-1){ //尾页
+		%>			<a href="QueryStudentByPage?currentPage=0">首页</a>
+					<a href="QueryStudentByPage?currentPage=<%=p.getCurrentPage()-1%>    ">上一页</a>
+		<% 
+				}
+	
+				else if(p.getCurrentPage() ==0){//首页
+		%>		<a href="QueryStudentByPage?currentPage=<%=p.getCurrentPage()+1%> ">下一页</a>
+				<a href="QueryStudentByPage?currentPage=<%=p.getTotalPage()-1%>">尾页</a>
+		<%		
+			}
+				else{//中间
+			%>		
+					<a href="QueryStudentByPage?currentPage=1">首页</a>
+					<a href="QueryStudentByPage?currentPage=<%=p.getCurrentPage()-1%>    ">上一页</a>
+					<a href="QueryStudentByPage?currentPage=<%=p.getCurrentPage()+1%> ">下一页</a>
+					<a href="QueryStudentByPage?currentPage=<%=p.getTotalPage()%>">尾页</a>
+		
+			<%			
+				}
+		
+		
+		%>
+			<%			
+				}
+		
+		
+		%>
+		<%
+				if(p.massage=="allmassage"){
+			
+			%>
+		    <a href="QueryStudentByPage?currentPage=0">返回</a>
+			<%			
+				}
+		
+		
+		%>
+		
+
 </body>
 </html>

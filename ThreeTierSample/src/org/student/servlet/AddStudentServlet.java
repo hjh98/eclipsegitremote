@@ -51,7 +51,7 @@ public class AddStudentServlet extends HttpServlet {
 			request.setAttribute("error", "noaddError");  
 		}
 //		response.sendRedirect("QueryAllStudentsServlet");
-		request.getRequestDispatcher("QueryAllStudentsServlet").forward(request, response);
+		request.getRequestDispatcher("QueryStudentByPage").forward(request, response);
 		
 	}
 

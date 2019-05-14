@@ -24,7 +24,7 @@ public class DeleteStudentServlet extends HttpServlet {
 		if(result) {
 //			out.print();
 			//response.getWriter().println("删除成功！");
-			response.sendRedirect("QueryAllStudentsServlet");//重新查询 所有学生
+			response.sendRedirect("QueryStudentByPage");//重新查询 所有学生
 		}else {
 			response.getWriter().println("删除失败！");
 		}

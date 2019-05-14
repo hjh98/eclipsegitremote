@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.student.entity.Page;
 import org.student.entity.Student;
 import org.student.service.impl.StudentServiceImpl;
 
@@ -33,9 +34,11 @@ public class QueryAllStudentsServlet extends HttpServlet {
 		
 		StudentServiceImpl service  = new StudentServiceImpl();
 		List<Student> students = service.queryAllStudents() ;
-		
+		Page page = new Page();
+		page.setStudents(students);
+		page.settype();
 		System.out.println(students);
-		request.setAttribute("students", students);
+		request.setAttribute("p", page);
 		//因为request域中有数据，因此需要通过请求转发的方式跳转 （重定向会丢失request域）
 		//pageContext<request<session<application
 		

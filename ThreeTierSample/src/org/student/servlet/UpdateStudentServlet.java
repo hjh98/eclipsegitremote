@@ -44,7 +44,7 @@ public class UpdateStudentServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		if(result) {
 //			response.getWriter().println("修改成功！");
-			response.sendRedirect("QueryAllStudentsServlet");//修改完毕后 ，再次重新查询全部的学生 并显示
+			response.sendRedirect("QueryStudentByPage");//修改完毕后 ，再次重新查询全部的学生 并显示
 		}else {
 			response.getWriter().println("修改失败了！");
 		}

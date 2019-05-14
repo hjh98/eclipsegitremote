@@ -138,15 +138,11 @@ public class StudentDaoImpl implements IStudentDao{
 	//pageSize：页面大小
 	@Override
 	public List<Student> queryStudentsByPage(int currentPage,int pageSize) {
-		String sql = "select *from "
-					+"("
-					+	"select rownum r,t.*from"
-					+"	(select s.* from student s order by sno asc) t"
-					+"	where  rownum<=? 	"
-					+") where  r>=?" ;
+		int count=pageSize*currentPage;
+		String sql = "select *from student limit ? ,?";
 		
 //		Object[] params = {页数*页面大小,(页数-1)*页面大小+1};
-		Object[] params = {currentPage*pageSize,(currentPage-1)*pageSize+1};
+		Object[] params = {count,pageSize};
 		ResultSet rs = DBUtil.executeQuery(sql, params) ;
 		List<Student> students = new ArrayList<>();
 		try {
@@ -167,7 +163,7 @@ public class StudentDaoImpl implements IStudentDao{
 	}
 
 	@Override
-	public int getTotalCount() {
+	public int getTotalCount() {//查询总数据量
 		String sql = "select count(*) from student" ;
 		return DBUtil.getTotalCount(sql);
 	}

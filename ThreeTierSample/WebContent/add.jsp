@@ -8,7 +8,7 @@
 	<script type="text/javascript">
 		function check()//onsubmit： return true：表单正常提交   return false:表单终止提交
 		{
-			var sno = $("#sno").val();//val（）函数用于获取value值
+			var sno = $("#sno").val();
 			var sname = $("#sname").val();
 			var sage = $("#sage").val();
 			var saddress = $("#saddress").val();
@@ -21,7 +21,7 @@
 				return false ;
 			}
 			
-			//if(...) return false1234 ;
+			//if(...) return false ;
 			
 			return true ;
 		}
